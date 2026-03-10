@@ -9,6 +9,7 @@ class Serena < Formula
   version "0.1.4"
 
   depends_on "python@3.11"
+  depends_on "rust" => :build
 
   resource "annotated_types" do
     url "https://files.pythonhosted.org/packages/ee/67/531ea369ba64dcff5ec9c3402f9f51bf748cec26dde048a2f973a4eea7f5/annotated_types-0.7.0.tar.gz"
@@ -105,17 +106,9 @@ class Serena < Formula
     sha256 "0137fb05990d35f1275a587e9aee6d56da821fc83491a0fb838183be43f66d6d"
   end
 
-  on_arm do
-    resource "jiter" do
-      url "https://files.pythonhosted.org/packages/50/f6/566364c777d2ab450b92100bea11333c64c38d32caf8dc378b48e5b20c46/jiter-0.13.0-cp311-cp311-macosx_11_0_arm64.whl"
-      sha256 "66aa3e663840152d18cc8ff1e4faad3dd181373491b9cfdc6004b92198d67911"
-    end
-  end
-  on_intel do
-    resource "jiter" do
-      url "https://files.pythonhosted.org/packages/71/29/499f8c9eaa8a16751b1c0e45e6f5f1761d180da873d417996cc7bddc8eef/jiter-0.13.0-cp311-cp311-macosx_10_12_x86_64.whl"
-      sha256 "ea026e70a9a28ebbdddcbcf0f1323128a8db66898a06eaad3a4e62d2f554d096"
-    end
+  resource "jiter" do
+    url "https://files.pythonhosted.org/packages/0d/5e/4ec91646aee381d01cdb9974e30882c9cd3b8c5d1079d6b5ff4af522439a/jiter-0.13.0.tar.gz"
+    sha256 "f2839f9c2c7e2dffc1bc5929a510e14ce0a946be9365fd1219e7ef342dae14f4"
   end
 
   resource "joblib" do
@@ -168,17 +161,9 @@ class Serena < Formula
     sha256 "4d351024c75c0f085a9febbb665ce8c0c6ec5d30e903bdb6394b7ede26aebb49"
   end
 
-  on_arm do
-    resource "pydantic_core" do
-      url "https://files.pythonhosted.org/packages/12/44/37e403fd9455708b3b942949e1d7febc02167662bf1a7da5b78ee1ea2842/pydantic_core-2.41.5-cp311-cp311-macosx_11_0_arm64.whl"
-      sha256 "7f3bf998340c6d4b0c9a2f02d6a400e51f123b59565d74dc60d252ce888c260b"
-    end
-  end
-  on_intel do
-    resource "pydantic_core" do
-      url "https://files.pythonhosted.org/packages/e8/72/74a989dd9f2084b3d9530b0915fdda64ac48831c30dbf7c72a41a5232db8/pydantic_core-2.41.5-cp311-cp311-macosx_10_12_x86_64.whl"
-      sha256 "a3a52f6156e73e7ccb0f8cced536adccb7042be67cb45f9562e12b319c119da6"
-    end
+  resource "pydantic_core" do
+    url "https://files.pythonhosted.org/packages/71/70/23b021c950c2addd24ec408e9ab05d59b035b39d97cdc1130e1bce647bb6/pydantic_core-2.41.5.tar.gz"
+    sha256 "08daa51ea16ad373ffd5e7606252cc32f07bc72b28284b6bc9c6df804816476e"
   end
 
   resource "pydantic_settings" do
@@ -211,17 +196,9 @@ class Serena < Formula
     sha256 "44aefc3142c5b842538163acb373e24cce6632bd54bdb01b21ad5863489f50d8"
   end
 
-  on_arm do
-    resource "regex" do
-      url "https://files.pythonhosted.org/packages/62/b9/6796b3bf3101e64117201aaa3a5a030ec677ecf34b3cd6141b5d5c6c67d5/regex-2026.2.28-cp311-cp311-macosx_11_0_arm64.whl"
-      sha256 "bcb399ed84eabf4282587ba151f2732ad8168e66f1d3f85b1d038868fe547703"
-    end
-  end
-  on_intel do
-    resource "regex" do
-      url "https://files.pythonhosted.org/packages/5d/10/ccc22c52802223f2368731964ddd117799e1390ffc39dbb31634a83022ee/regex-2026.2.28-cp311-cp311-macosx_10_9_x86_64.whl"
-      sha256 "0d5bef2031cbf38757a0b0bc4298bb4824b6332d28edc16b39247228fbdbad97"
-    end
+  resource "regex" do
+    url "https://files.pythonhosted.org/packages/8b/71/41455aa99a5a5ac1eaf311f5d8efd9ce6433c03ac1e0962de163350d0d97/regex-2026.2.28.tar.gz"
+    sha256 "a729e47d418ea11d03469f321aaf67cdee8954cde3ff2cf8403ab87951ad10f2"
   end
 
   resource "requests" do
@@ -229,17 +206,9 @@ class Serena < Formula
     sha256 "dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf"
   end
 
-  on_arm do
-    resource "rpds_py" do
-      url "https://files.pythonhosted.org/packages/94/ba/24e5ebb7c1c82e74c4e4f33b2112a5573ddc703915b13a073737b59b86e0/rpds_py-0.30.0-cp311-cp311-macosx_11_0_arm64.whl"
-      sha256 "dc4f992dfe1e2bc3ebc7444f6c7051b4bc13cd8e33e43511e8ffd13bf407010d"
-    end
-  end
-  on_intel do
-    resource "rpds_py" do
-      url "https://files.pythonhosted.org/packages/4d/6e/f964e88b3d2abee2a82c1ac8366da848fce1c6d834dc2132c3fda3970290/rpds_py-0.30.0-cp311-cp311-macosx_10_12_x86_64.whl"
-      sha256 "a2bffea6a4ca9f01b3f8e548302470306689684e61602aa3d141e34da06cf425"
-    end
+  resource "rpds_py" do
+    url "https://files.pythonhosted.org/packages/20/af/3f2f423103f1113b36230496629986e0ef7e199d2aa8392452b484b38ced/rpds_py-0.30.0.tar.gz"
+    sha256 "dd8ff7cf90014af0c0f787eea34794ebf6415242ee1d6fa91eaba725cc441e84"
   end
 
   resource "ruamel_yaml" do
@@ -267,17 +236,9 @@ class Serena < Formula
     sha256 "834edd1b0a23167694292e94f597773bc3f89f362be6effee198165a35d62933"
   end
 
-  on_arm do
-    resource "tiktoken" do
-      url "https://files.pythonhosted.org/packages/c9/d9/35c5d2d9e22bb2a5f74ba48266fb56c63d76ae6f66e02feb628671c0283e/tiktoken-0.12.0-cp311-cp311-macosx_11_0_arm64.whl"
-      sha256 "c06cf0fcc24c2cb2adb5e185c7082a82cba29c17575e828518c2f11a01f445aa"
-    end
-  end
-  on_intel do
-    resource "tiktoken" do
-      url "https://files.pythonhosted.org/packages/de/46/21ea696b21f1d6d1efec8639c204bdf20fde8bafb351e1355c72c5d7de52/tiktoken-0.12.0-cp311-cp311-macosx_10_12_x86_64.whl"
-      sha256 "6e227c7f96925003487c33b1b32265fad2fbcec2b7cf4817afb76d416f40f6bb"
-    end
+  resource "tiktoken" do
+    url "https://files.pythonhosted.org/packages/7d/ab/4d017d0f76ec3171d469d80fc03dfbb4e48a4bcaddaa831b31d526f05edc/tiktoken-0.12.0.tar.gz"
+    sha256 "b18ba7ee2b093863978fcb14f74b3707cdc8d4d4d3836853ce7ec60772139931"
   end
 
   resource "tqdm" do
