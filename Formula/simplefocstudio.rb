@@ -9,6 +9,7 @@ class Simplefocstudio < Formula
 
   depends_on "python@3.14"
   depends_on "pyqt@5"
+  depends_on "numpy"
 
   resource "pyqtgraph" do
     url "https://files.pythonhosted.org/packages/72/cb/3c2e3482508fef3add90c7d28b015f47e078e63a9ab43a69722c5e4f64d6/pyqtgraph-0.13.1.tar.gz"
@@ -20,23 +21,16 @@ class Simplefocstudio < Formula
     sha256 "3c77e014170dfffbd816e6ffc205e9842efb10be9f58ec16d3e8675b4925cddb"
   end
 
-  resource "numpy" do
-    url "https://files.pythonhosted.org/packages/5f/c7/5ca7c100dcc85b5ef1b176bdf87be5e4392c2c3018e13cc7cdef828c6a09/numpy-1.24.0.tar.gz"
-    sha256 "c4ab7c9711fe6b235e86487ca74c1b092a6dd59a3cb45b63241ea0a148501853"
-  end
-
   def install
-    # python@3.14 is the Python that pyqt@5 is built against
     python = Formula["python@3.14"].opt_bin/"python3.14"
     venv = virtualenv_create(libexec, python)
     venv.pip_install resources
 
-    # Expose pyqt@5's site-packages (PyQt5, PyQt5-sip) to the virtualenv
-    pyqt5_sp = Formula["pyqt@5"].opt_lib/"python3.14/site-packages"
+    # Expose Homebrew-managed packages to the virtualenv via .pth files
     site_packages = libexec/"lib/python3.14/site-packages"
-    (site_packages/"homebrew-pyqt5.pth").write(pyqt5_sp)
+    (site_packages/"homebrew-pyqt5.pth").write(Formula["pyqt@5"].opt_lib/"python3.14/site-packages")
+    (site_packages/"homebrew-numpy.pth").write(Formula["numpy"].opt_lib/"python3.14/site-packages")
 
-    # Copy app source into libexec (no conflict with venv subdirs)
     libexec.install Dir["*"]
 
     (bin/"simplefocstudio").write <<~EOS
