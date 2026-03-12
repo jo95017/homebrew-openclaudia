@@ -1,4 +1,6 @@
 class Simplefocstudio < Formula
+  include Language::Python::Virtualenv
+
   desc "Graphical user interface for SimpleFOC BLDC/Stepper motor controllers"
   homepage "https://github.com/JorgeMaker/SimpleFOCStudio"
   url "https://github.com/JorgeMaker/SimpleFOCStudio/archive/refs/tags/v1.0.tar.gz"
