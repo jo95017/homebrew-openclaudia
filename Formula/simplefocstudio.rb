@@ -2,7 +2,7 @@ class Simplefocstudio < Formula
   desc "Graphical user interface for SimpleFOC BLDC/Stepper motor controllers"
   homepage "https://github.com/JorgeMaker/SimpleFOCStudio"
   url "https://github.com/JorgeMaker/SimpleFOCStudio/archive/refs/tags/v1.0.tar.gz"
-  sha256 "5fdd24e37ab0cf7c44cfe19112b640aa8da6b6bb1243422c452d7fc897445fbe"
+  sha256 "c37225a822f31d6b626bea67d8bac70b49dcd8a5730c4e8a04cc063786aab915"
   version "1.0"
   license "MIT"
 
