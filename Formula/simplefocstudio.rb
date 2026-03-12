@@ -35,7 +35,7 @@ class Simplefocstudio < Formula
 
     (bin/"simplefocstudio").write <<~EOS
       #!/bin/bash
-      PYTHONPATH="#{libexec}:$PYTHONPATH" exec "#{libexec}/bin/python3" "#{libexec}/simpleFOCStudio.py" "$@"
+      cd "#{libexec}" && PYTHONPATH="#{libexec}:$PYTHONPATH" exec "#{libexec}/bin/python3" "#{libexec}/simpleFOCStudio.py" "$@"
     EOS
     chmod 0755, bin/"simplefocstudio"
   end
