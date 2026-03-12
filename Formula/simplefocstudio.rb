@@ -5,10 +5,9 @@ class Simplefocstudio < Formula
   homepage "https://github.com/JorgeMaker/SimpleFOCStudio"
   url "https://github.com/JorgeMaker/SimpleFOCStudio/archive/refs/tags/v1.0.tar.gz"
   sha256 "c37225a822f31d6b626bea67d8bac70b49dcd8a5730c4e8a04cc063786aab915"
-  version "1.0"
   license "MIT"
 
-  # pyqt@5 brings its own Python; we use that Python so PyQt5 bindings match
+  depends_on "python@3.14"
   depends_on "pyqt@5"
 
   resource "pyqtgraph" do
@@ -27,18 +26,17 @@ class Simplefocstudio < Formula
   end
 
   def install
-    # Use pyqt@5's bundled Python so Qt bindings are ABI-compatible
-    python = Formula["pyqt@5"].opt_bin/"python3"
+    # python@3.14 is the Python that pyqt@5 is built against
+    python = Formula["python@3.14"].opt_bin/"python3.14"
     venv = virtualenv_create(libexec, python)
     venv.pip_install resources
 
-    # Expose pyqt@5's own site-packages (PyQt5, PyQt5-sip) to the virtualenv
-    python_version = Language::Python.major_minor_version(python)
-    site_packages = libexec/"lib/python#{python_version}/site-packages"
-    pyqt5_sp = Formula["pyqt@5"].opt_lib/"python#{python_version}/site-packages"
+    # Expose pyqt@5's site-packages (PyQt5, PyQt5-sip) to the virtualenv
+    pyqt5_sp = Formula["pyqt@5"].opt_lib/"python3.14/site-packages"
+    site_packages = libexec/"lib/python3.14/site-packages"
     (site_packages/"homebrew-pyqt5.pth").write(pyqt5_sp)
 
-    # Copy app source into libexec (does not conflict with venv directories)
+    # Copy app source into libexec (no conflict with venv subdirs)
     libexec.install Dir["*"]
 
     (bin/"simplefocstudio").write <<~EOS
@@ -49,7 +47,7 @@ class Simplefocstudio < Formula
   end
 
   test do
-    assert_predicate libexec/"simpleFOCStudio.py", :exist?
-    assert_predicate libexec/"src/gui/mainWindow.py", :exist?
+    assert_path_exists libexec/"simpleFOCStudio.py"
+    assert_path_exists libexec/"src/gui/mainWindow.py"
   end
 end
